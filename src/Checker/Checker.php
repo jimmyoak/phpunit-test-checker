@@ -39,17 +39,13 @@ class Checker
         }
 
         if ($filesWithoutTests) {
-            $stderr = fopen('php://stderr', 'w');
-            fwrite($stderr, 'Classes with no tests:' . "\n");
+            $msg = 'Classes with no tests:' . "\n";
             foreach ($filesWithoutTests as $fileWithoutTest) {
-                fwrite($stderr, "\t- " . $fileWithoutTest . "\n");
+                $msg .= "\t- " . $fileWithoutTest . "\n";
             }
-            fclose($stderr);
 
-            exit(1);
+            throw new \RuntimeException($msg);
         }
-
-        exit(0);
     }
 
     /**

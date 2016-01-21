@@ -25,6 +25,14 @@ $checker = new Checker(\JimmyOak\PhpUnitChecker\Config\JsonConfigReader::readFil
 $checker->check();
 ```
 
+Output:
+```text
+Classes with no tests:
+        - Checker/Checker.php
+```
+
+I know, I know. I have to test this class... ^^'
+
 ## TODO
 
 A lot of improvements. This is only an approach. (Proof of concept)

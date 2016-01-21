@@ -1,0 +1,35 @@
+{
+  "name": "jimmyoak/phpunit-test-checker",
+  "authors": [
+    {
+      "name": "Adrián Robles",
+      "email": "adrian.robles.maiz@gmail.com",
+      "homepage": "http://github.com/jimmyoak"
+    }
+  ],
+  "license": "MIT",
+  "keywords": ["utilities", "php", "phpunit", "check", "checker", "jimmy", "jimmyoak"],
+  "autoload": {
+    "psr-4": {
+      "JimmyOak\\PhpUnitChecker\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JimmyOak\\Test\\PhpUnitChecker\\": "test/"
+    }
+  },
+  "require": {
+    "php": ">=5.3.3",
+    "jimmyoak/utilities": "2.5.1b"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8"
+  },
+  "config": {
+    "bin-dir": "bin/",
+    "platform": {
+      "php": "5.3.3"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "suites": [
+    {
+      "src-path": "src/",
+      "test-path": "test/",
+      "test-case-suffix": "Test"
+    }
+  ]
+}

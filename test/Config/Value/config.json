@@ -1,0 +1,14 @@
+{
+  "suites": [
+    {
+      "src-path": "src",
+      "test-path": "test",
+      "test-case-suffix": "Test"
+    },
+    {
+      "src-path": "another-src",
+      "test-path": "another-test",
+      "test-case-suffix": "AnotherTest"
+    }
+  ]
+}

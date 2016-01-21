@@ -16,5 +16,5 @@ interface ConfigReader
      *
      * @return SuiteConfig[]
      */
-    public static function read($json);
+    public static function read($json, $basePath = '');
 }

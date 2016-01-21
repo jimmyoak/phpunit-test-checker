@@ -2,7 +2,7 @@
 
 namespace JimmyOak\PhpUnitChecker\Config;
 
-class JsonConfigReader implements ConfigReader
+class JsonConfigReader extends ConfigReaderBase
 {
     const SRC_PATH_KEY = 'src-path';
 
@@ -14,12 +14,7 @@ class JsonConfigReader implements ConfigReader
     {
     }
 
-    public static function readFile($configPath)
-    {
-        return self::read(file_get_contents($configPath));
-    }
-
-    public static function read($json)
+    public static function read($json, $basePath = '')
     {
         $jsonConfig = json_decode($json, true);
 
@@ -30,7 +25,8 @@ class JsonConfigReader implements ConfigReader
             $config[] = new SuiteConfig(
                 self::getSrcPath($suite),
                 self::getTestPath($suite),
-                self::getTestCaseSuffix($suite)
+                self::getTestCaseSuffix($suite),
+                $basePath
             );
         }
 

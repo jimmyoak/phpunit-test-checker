@@ -29,10 +29,11 @@ class Checker
         $filesWithoutTests = array();
 
         foreach ($this->config as $config) {
-            $srcFiles = FileUtils::instance()->scanDir($config->getSrcPath(), FileUtils::FILES);
+            $srcFiles = FileUtils::instance()->scanDir($config->getSrcBasePath(), FileUtils::FILES);
             foreach ($srcFiles as $srcFile) {
                 if ($this->isPhpClassFile($srcFile, $config)) {
                     $supposedTestFile = $this->makeSupposedTestFilePath($srcFile, $config);
+                    echo $srcFile . ' -> ' . $supposedTestFile . "\n";
                     if (!file_exists($supposedTestFile)) {
                         $filesWithoutTests[] = $srcFile;
                     }
@@ -55,7 +56,7 @@ class Checker
             '.' . FileUtils::instance()->getExtension($srcFile);
 
         return FileUtils::instance()->makePath(
-            $config->getTestPath(),
+            $config->getTestBasePath(),
             $testFileName
         );
     }
@@ -81,6 +82,6 @@ class Checker
     private function isPhpClassFile($srcFile, $config)
     {
         return FileUtils::instance()->extensionIs($srcFile, 'php')
-            && $this->fileHasClass(FileUtils::instance()->makePath($config->getSrcPath(), $srcFile));
+            && $this->fileHasClass(FileUtils::instance()->makePath($config->getSrcBasePath(), $srcFile));
     }
 }

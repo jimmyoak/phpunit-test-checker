@@ -39,24 +39,30 @@ class JsonConfigReaderTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateConfigFromJsonFile()
     {
-        $config = JsonConfigReader::readFile(__DIR__ . '/Value/config.json');
+        $basePath = __DIR__ . '/Value/';
+        $config = JsonConfigReader::readFile($basePath . 'config.json');
 
-        $this->assertConfig($config);
+        $this->assertConfig($config, $basePath);
     }
 
     /**
      * @param $config
+     * @param $basePath
      */
-    private function assertConfig($config)
+    private function assertConfig($config, $basePath = '')
     {
         $this->assertCount(2, $config);
 
         $this->assertSame('src', $config[0]->getSrcPath());
         $this->assertSame('test', $config[0]->getTestPath());
+        $this->assertSame($basePath . 'src', $config[0]->getSrcBasePath());
+        $this->assertSame($basePath . 'test', $config[0]->getTestBasePath());
         $this->assertSame('Test', $config[0]->getTestCaseSuffix());
 
         $this->assertSame('another-src', $config[1]->getSrcPath());
         $this->assertSame('another-test', $config[1]->getTestPath());
+        $this->assertSame($basePath . 'another-src', $config[1]->getSrcBasePath());
+        $this->assertSame($basePath . 'another-test', $config[1]->getTestBasePath());
         $this->assertSame('AnotherTest', $config[1]->getTestCaseSuffix());
     }
 }

@@ -2,15 +2,13 @@
 
 namespace JimmyOak\PhpUnitChecker\Checker;
 
-use JimmyOak\PhpUnitChecker\Config\Config;
 use JimmyOak\PhpUnitChecker\Config\SuiteConfig;
-use JimmyOak\PhpUnitChecker\Config\JsonConfigReader;
 use JimmyOak\Utility\FileUtils;
 
 class Checker
 {
     /**
-     * @var Config|SuiteConfig[]
+     * @var SuiteConfig[]
      */
     private $config;
 
@@ -33,7 +31,6 @@ class Checker
             foreach ($srcFiles as $srcFile) {
                 if ($this->isPhpClassFile($srcFile, $config)) {
                     $supposedTestFile = $this->makeSupposedTestFilePath($srcFile, $config);
-                    echo $srcFile . ' -> ' . $supposedTestFile . "\n";
                     if (!file_exists($supposedTestFile)) {
                         $filesWithoutTests[] = $srcFile;
                     }
@@ -42,13 +39,25 @@ class Checker
         }
 
         if ($filesWithoutTests) {
-            echo 'Classes with no tests:' . "\n";
+            $stderr = fopen('php://stderr', 'w');
+            fwrite($stderr, 'Classes with no tests:' . "\n");
             foreach ($filesWithoutTests as $fileWithoutTest) {
-                echo "\t- " . $fileWithoutTest . "\n";
+                fwrite($stderr, "\t- " . $fileWithoutTest . "\n");
             }
+            fclose($stderr);
+
+            exit(1);
         }
+
+        exit(0);
     }
 
+    /**
+     * @param $srcFile
+     * @param SuiteConfig $config
+     *
+     * @return string
+     */
     private function makeSupposedTestFilePath($srcFile, $config)
     {
         $testFileName = FileUtils::instance()->getNameWithoutExtension($srcFile) .
@@ -75,7 +84,7 @@ class Checker
 
     /**
      * @param $srcFile
-     * @param $config
+     * @param SuiteConfig $config
      *
      * @return bool
      */

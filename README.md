@@ -1,5 +1,7 @@
 # PHPUnit test checker
 
+
+
 ## Usage
 
 Config file example (phpunit-test-checker.json):
@@ -34,5 +36,5 @@ Classes with no tests:
 I know, I know. I have to test this class... ^^'
 
 ## TODO
-
+ 
 A lot of improvements. This is only an approach. (Proof of concept)

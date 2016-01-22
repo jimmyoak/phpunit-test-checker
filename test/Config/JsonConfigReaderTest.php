@@ -46,6 +46,16 @@ class JsonConfigReaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     */
+    public function shouldThrowExceptionWhenNoSuites()
+    {
+        $this->setExpectedException('\RuntimeException', 'Config has no suites');
+
+        JsonConfigReader::read('{}');
+    }
+
+    /**
      * @param $config
      * @param $basePath
      */

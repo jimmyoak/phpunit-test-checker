@@ -1,6 +1,7 @@
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.6/phpunit.xsd"
+        bootstrap="./vendor/autoload.php"
         cacheTokens="false"
         backupGlobals="false"
         backupStaticAttributes="false"
@@ -26,6 +27,7 @@
     <testsuites>
         <testsuite name="Test Suite">
             <directory>./test</directory>
+            <exclude>./test/Checker/Value/</exclude>
         </testsuite>
     </testsuites>
 

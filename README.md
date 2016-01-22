@@ -34,9 +34,6 @@ Classes with no tests:
         - Command/CheckerCommand.php
 ```
 
-I know, I know. I have to test this class... ^^'
-
-
 But if we run with this config...:
 
 ```json

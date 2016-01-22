@@ -10,6 +10,8 @@ class JsonConfigReader extends ConfigReaderBase
 
     const TEST_CASE_SUFFIX_KEY = 'test-case-suffix';
 
+    const EXCLUDED_PATHS_KEY = 'excluded';
+
     private function __construct()
     {
     }
@@ -26,7 +28,8 @@ class JsonConfigReader extends ConfigReaderBase
                 self::getSrcPath($suite),
                 self::getTestPath($suite),
                 self::getTestCaseSuffix($suite),
-                $basePath
+                $basePath,
+                self::getExcludedPaths($suite)
             );
         }
 
@@ -61,6 +64,16 @@ class JsonConfigReader extends ConfigReaderBase
     private static function getTestCaseSuffix($jsonConfig)
     {
         return isset($jsonConfig[self::TEST_CASE_SUFFIX_KEY]) ? $jsonConfig[self::TEST_CASE_SUFFIX_KEY] : null;
+    }
+
+    /**
+     * @param $jsonConfig
+     *
+     * @return array
+     */
+    private static function getExcludedPaths($jsonConfig)
+    {
+        return isset($jsonConfig[self::EXCLUDED_PATHS_KEY]) ? $jsonConfig[self::EXCLUDED_PATHS_KEY] : array();
     }
 
     /**

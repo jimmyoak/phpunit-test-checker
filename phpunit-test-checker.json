@@ -3,7 +3,11 @@
     {
       "src-path": "src/",
       "test-path": "test/",
-      "test-case-suffix": "Test"
+      "test-case-suffix": "Test",
+      "excluded": [
+        "Checker/Checker.php",
+        "Command/"
+      ]
     }
   ]
 }

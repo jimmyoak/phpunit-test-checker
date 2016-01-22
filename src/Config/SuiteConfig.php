@@ -31,20 +31,27 @@ class SuiteConfig
     private $basePath;
 
     /**
+     * @var string[]
+     */
+    private $excludedPaths;
+
+    /**
      * Config constructor.
      *
      * @param string $srcPath
      * @param string $testPath
      * @param string $testCaseSuffix
      * @param string $basePath
+     * @param array $excludedPaths
      */
-    public function __construct($srcPath, $testPath, $testCaseSuffix, $basePath = '')
+    public function __construct($srcPath, $testPath, $testCaseSuffix, $basePath = '', array $excludedPaths = array())
     {
         $this->srcPath = $srcPath ?: self::DEFAULT_SRC_PATH;
         $this->testPath = $testPath ?: self::DEFAULT_TEST_PATH;
         $this->testCaseSuffix = $testCaseSuffix ?: self::DEFAULT_TEST_CASE_SUFFIX;
 
         $this->basePath = $basePath;
+        $this->excludedPaths = $excludedPaths;
     }
 
     /**
@@ -85,6 +92,14 @@ class SuiteConfig
     public function getTestCaseSuffix()
     {
         return $this->testCaseSuffix;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getExcludedPaths()
+    {
+        return $this->excludedPaths;
     }
 
     /**

@@ -31,9 +31,33 @@ Output:
 ```text
 Classes with no tests:
         - Checker/Checker.php
+        - Command/CheckerCommand.php
 ```
 
 I know, I know. I have to test this class... ^^'
+
+
+But if we run with this config...:
+
+```json
+{
+  "suites": [
+    {
+      "src-path": "src/",
+      "test-path": "test/",
+      "test-case-suffix": "Test",
+      "excluded": [
+        "Checker/Checker.php",
+        "Command/"
+      ]
+    }
+  ]
+}
+```
+
+Outputs nothing :)
+
+"Excluded" is just a regex like /^Command/, therefore if it's a folder put the / separator at the end. 
 
 ## TODO
 

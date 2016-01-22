@@ -29,7 +29,7 @@ class Checker
         foreach ($this->config as $config) {
             $srcFiles = FileUtils::instance()->scanDir($config->getSrcBasePath(), FileUtils::FILES);
             foreach ($srcFiles as $srcFile) {
-                if ($this->isPhpClassFile($srcFile, $config)) {
+                if ($this->isPhpClassFile($srcFile, $config) && !$this->isExcluded($srcFile, $config)) {
                     $supposedTestFile = $this->makeSupposedTestFilePath($srcFile, $config);
                     if (!file_exists($supposedTestFile)) {
                         $filesWithoutTests[] = $srcFile;
@@ -87,6 +87,22 @@ class Checker
     private function isPhpClassFile($srcFile, $config)
     {
         return FileUtils::instance()->extensionIs($srcFile, 'php')
-            && $this->fileHasClass(FileUtils::instance()->makePath($config->getSrcBasePath(), $srcFile));
+        && $this->fileHasClass(FileUtils::instance()->makePath($config->getSrcBasePath(), $srcFile));
+    }
+
+    /**
+     * @param $srcFile
+     * @param SuiteConfig $config
+     *
+     * @return int
+     */
+    private function isExcluded($srcFile, $config)
+    {
+        foreach ($config->getExcludedPaths() as $excludedPath) {
+            if (preg_match('/^' . preg_quote($excludedPath, '/') . '/', $srcFile) > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

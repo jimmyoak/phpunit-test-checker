@@ -36,6 +36,7 @@
             <directory>./src</directory>
             <exclude>
                 <directory>./vendor/</directory>
+                <directory>./src/Command/</directory>
             </exclude>
         </whitelist>
     </filter>

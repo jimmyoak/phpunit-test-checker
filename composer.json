@@ -11,7 +11,7 @@
     }
   ],
   "license": "MIT",
-  "keywords": ["utilities", "php", "phpunit", "check", "checker", "jimmy", "jimmyoak"],
+  "keywords": ["utilities", "php", "phpunit", "check", "checker", "jimmy", "jimmyoak", "test", "unit", "testing", "precommit", "hook", "git"],
   "autoload": {
     "psr-4": {
       "JimmyOak\\PhpUnitChecker\\": "src/"

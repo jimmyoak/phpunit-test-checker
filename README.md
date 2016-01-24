@@ -1,6 +1,8 @@
 # PHPUnit test checker
 
+## Description
 
+Check for classes without tests. Intended for pre-commit hook.
 
 ## Usage
 
